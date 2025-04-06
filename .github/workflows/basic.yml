@@ -130,5 +130,7 @@ jobs:
 
       - name: Start Application
         run: |
-          ssh ${{ secrets.SPRING_APP_USER }}@${{ secrets.SPRING_APP_HOST }} "sudo systemctl restart spring-app"
-          ssh ${{ secrets.SPRING_APP_USER }}@${{ secrets.SPRING_APP_HOST }} "sudo systemctl status spring-app --no-pager"
+          ssh ${{ secrets.SPRING_APP_USER }}@${{ secrets.SPRING_APP_HOST }} << 'ENDSSH'
+            sudo systemctl restart spring-app
+            sudo systemctl status spring-app --no-pager
+          ENDSSH
